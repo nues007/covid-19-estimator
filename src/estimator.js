@@ -21,8 +21,8 @@ const covid19ImpactEstimator = (data) => {
      - data.reportedCases * (10 * rate * 0.15), 10),
       casesForICUByRequestedTim: parseInt(data.reportedCases * (10 * rate * 0.05), 10),
       casesForVentilatorsByRequestedTime: parseInt(data.reportedCases * (10 * rate * 0.02), 10),
-      dollarsInFlight: (data.reportedCases * 10 * rate * average
-      * income * data.timeToElapse).toFixed(2)
+      dollarsInFlight: parseInt((data.reportedCases * 10 * rate * average
+      * income) / data.timeToElapse, 10)
     },
     severeImpact: {
       currentlyInfected: data.reportedCases * 50,
@@ -32,8 +32,8 @@ const covid19ImpactEstimator = (data) => {
      - data.reportedCases * (50 * rate * 0.15), 10),
       casesForICUByRequestedTim: parseInt(data.reportedCases * (50 * rate * 0.05), 10),
       casesForVentilatorsByRequestedTime: parseInt(data.reportedCases * 50 * rate * 0.02, 10),
-      dollarsInFlight: (data.reportedCases * 50 * rate * average
-      * income * data.timeToElapse).toFixed(2)
+      dollarsInFlight: parseInt((data.reportedCases * 50 * rate * average
+      * income) / data.timeToElapse, 10)
 
     }
   };
