@@ -1,6 +1,7 @@
 const covid19ImpactEstimator = (data) => {
   let days = 0;
   let day = 0;
+  const average = data.region.avgDailyIncomePopulation;
   const income = data.region.avgDailyIncomeInUSD;
   if (data.periodType === 'days') {
     days = parseInt(data.timeToElapse / 3, 10);
@@ -23,8 +24,8 @@ const covid19ImpactEstimator = (data) => {
      - data.reportedCases * (10 * rate * 0.15), 10),
       casesForICUByRequestedTim: parseInt(data.reportedCases * 10 * rate * 0.05, 10),
       casesForVentilatorsByRequestedTime: parseInt(data.reportedCases * 10 * rate * 0.02, 10),
-      dollarsInFlight: data.reportedCases * 10 * rate * (data.region.avgDailyIncomePopulation
-      * income * day)
+      dollarsInFlight: data.reportedCases * 10 * rate * average
+      * income * day
     },
     severeImpact: {
       currentlyInfected: data.reportedCases * 50,
@@ -34,7 +35,7 @@ const covid19ImpactEstimator = (data) => {
      - data.reportedCases * (50 * rate * 0.15), 10),
       casesForICUByRequestedTim: parseInt(data.reportedCases * (50 * rate * 0.05), 10),
       casesForVentilatorsByRequestedTime: parseInt(data.reportedCases * 50 * rate * 0.02, 10),
-      dollarsInFlight: data.reportedCases * 50 * rate * data.region.avgDailyIncomePopulation
+      dollarsInFlight: data.reportedCases * 50 * rate * average
       * income * day
 
     }
